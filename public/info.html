@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Thinkful | Example of client with mock API data</title>
+		<link href="index.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width">
+	</head>
+	<body>
+		<div class="homepage">
+			<h1>Hi User!</h1>
+            <p>Below is your data!</p>
+			<button type="submit" class="getData">Get Your Data!</button>
+			<button type="submit" class="postData">Submit New Data!</button>
+			<ul></ul>
+		</div>
+		<div class="newItem">
+			<form class="newItemForm" method="post">
+				<fieldset>
+					<legend>Please fill in all fields</legend>
+					<label>
+						Gym
+						<input type="text" name="gym" placeholder="0-5" required>
+					</label>
+					<label>
+						Sleep
+						<input type="text" name="sleep" placeholder="0-5" required>
+					</label>
+					<label>
+						Social
+						<input type="text" name="social" placeholder="0-5" required>
+					</label>
+					<label>
+						Diet
+						<input type="text" name="diet" placeholder="0-5" required>
+					</label>
+					<label>
+						Mood
+						<input type="text" name="mood" placeholder="0-5" required>
+					</label>
+				</fieldset>
+				<button type="submit" class="submitNewItem">Submit New Items</button>
+			</form>
+		</div>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+		<script type="text/javascript" src="app.js"></script>
+	</body>
+</html>
