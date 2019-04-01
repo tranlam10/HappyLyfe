@@ -13,7 +13,7 @@ const jwtAuth = passport.authenticate('jwt', {session: false});
 
 router.get("/show", jwtAuth, function(req, res) {
     Data
-        .find()
+        .find( { userId: req.query.userId } )
         .then(function(posts) {
             res.json(posts);
         })

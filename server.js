@@ -1,3 +1,4 @@
+require('dotenv').config();
 "use strict";
 
 const express = require('express');
@@ -7,6 +8,7 @@ const bodyParser = require('body-parser');
 
 const { router: usersRouter } = require('./users');
 const { router: authRouter, localStrategy, jwtStrategy } = require('./auth');
+const { router: dataRouter } = require('./data');
 
 mongoose.Promise = global.Promise;
 
@@ -16,12 +18,14 @@ const { Restaurant } = require("./models");
 const app = express();
 
 app.use(bodyParser.json());
+app.use(express.static('public'));
 
 passport.use(localStrategy);
 passport.use(jwtStrategy);
 
 app.use('/api/users/', usersRouter);
 app.use('/api/auth/', authRouter);
+app.use('/api/data/', dataRouter);
 
 app.use('*', (req, res) => {
     return res.status(404).json({ message: 'Not Found' });

@@ -8,8 +8,13 @@ const { Strategy: JwtStrategy, ExtractJwt } = require('passport-jwt');
 const { User } = require('../users/models');
 const { JWT_SECRET } = require('../config');
 
+//If the password is valid, the user object will be added to the request object at req.user. If not, we'll return an error message.
+//allowed the user to supply a username and password to authenticate with an endpoint
 const localStrategy = new LocalStrategy((username, password, callback) => {
   let user;
+  console.log("worked");
+  console.log(username);
+  console.log(password);
   User.findOne({ username: username })
     .then(_user => {
       user = _user;
@@ -42,7 +47,7 @@ const localStrategy = new LocalStrategy((username, password, callback) => {
 
 const jwtStrategy = new JwtStrategy(
   {
-    secretOrKey: 'secret',
+    secretOrKey: JWT_SECRET,
     // Look for the JWT as a Bearer auth header
     jwtFromRequest: ExtractJwt.fromAuthHeaderWithScheme('Bearer'),
     // Only allow HS256 tokens - the same as the ones we issue
