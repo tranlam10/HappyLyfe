@@ -44,4 +44,8 @@ router.post('/', jsonParser, function(req, res) {
     });
 });
 
+router.put('/show/:id', jsonParser, function(req,res) {
+    
+});
+
 module.exports = {router};

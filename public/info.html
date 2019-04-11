@@ -9,7 +9,7 @@
 	</head>
 	<body>
 		<div class="homepage">
-			<h1>Hi Ngoc Hanh!</h1>
+			<h1 id="user"></h1>
             <p>Below is your data!</p>
 			<button type="submit" class="getData">Get Your Data!</button>
 			<button type="submit" class="postData">Submit New Data!</button>
@@ -54,6 +54,7 @@
 			let today = new Date();
 			let date = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
 			document.getElementById('dateEntry').value = date;
+			document.getElementById('user').innerHTML = 'Hi ' + username;
 		</script>
 	</body>
 </html>

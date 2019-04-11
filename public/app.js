@@ -1,5 +1,6 @@
 let authToken = localStorage.getItem("authToken");
 let userId = localStorage.getItem("userId");
+let username = localStorage.getItem("username");
 
 $(".getData").click(function() {
     $.ajax({
@@ -23,14 +24,58 @@ $(".getData").click(function() {
             $("ul").html('');
             userData.map(function(data) {
                 return $("ul").append(
-                    `<li>
+                    `<li class="listItem">
                         ${date}: ${data[date].slice(0,10)}
                         <i class="fas fa-dumbbell"></i>${gym}: ${data[gym]}
                         <i class="fas fa-bed"></i>${sleep}: ${data[sleep]}
                         ${social}: ${data[social]}
                         ${diet}: ${data[diet]}
                         ${mood}: ${data[mood]}
-                    </li>`
+                    </li>
+                    <div class="listButton">
+                        <button class="edit">Edit</button>
+                        <button class="delete">Delete</button>
+                    </div>`
+                );
+            });
+            $(".listButton").hide();
+            $("li").click(function() {
+                $(".listButton").show();
+            });
+            $(".edit").click(function() {
+                $(".listButton").append(
+                    `<div class="editItem">
+                        <form class="editItemForm" method="post">
+                            <fieldset>
+                                <legend>Please fill in all fields</legend>
+                                <label>
+                                    Date:
+                                    <input type="date" id="dateEntry" name="date" value="2018-07-22" min="2019-01-01" max="2050-12-31" required>
+                                </label>
+                                <label>
+                                    Gym
+                                    <input type="text" name="gym" placeholder="0-5" required>
+                                </label>
+                                <label>
+                                    Sleep
+                                    <input type="text" name="sleep" placeholder="0-5" required>
+                                </label>
+                                <label>
+                                    Social
+                                    <input type="text" name="social" placeholder="0-5" required>
+                                </label>
+                                <label>
+                                    Diet
+                                    <input type="text" name="diet" placeholder="0-5" required>
+                                </label>
+                                <label>
+                                    Mood
+                                    <input type="text" name="mood" placeholder="0-5" required>
+                                </label>
+                            </fieldset>
+                            <button type="submit" class="submitEditItem">Submit New Items</button>
+                        </form>
+		            </div>`
                 );
             });
         }
@@ -77,10 +122,6 @@ $('.newItemForm').submit(function(event) {
       $.ajax(settings).done(function(response) {
           console.log(response);
       });
-});
-
-$("li").on("click", function() {
-    console.log("CLICKED");
 });
 
 $(document).ready(function() {
@@ -159,6 +200,7 @@ $(document).ready(function() {
                   console.log(response);
                   localStorage.setItem("authToken", response[0].authToken);
                   localStorage.setItem("userId", response[1]._id);
+                  localStorage.setItem("username", credentials.username);
                   window.location.href = "info.html";
               });
         });
@@ -166,6 +208,7 @@ $(document).ready(function() {
         $(".logout").click(function() {
             localStorage.setItem("authToken", '');
             localStorage.setItem("userId", '');
+            localStorage.setItem("username", '');
             window.location.href = "index.html";
         });
 
