@@ -89,7 +89,7 @@ $(".postData").click(function() {
     $(".newItem").show();
 
 });
-
+ 
 
 $('.newItemForm').submit(function(event) {
     event.preventDefault();
